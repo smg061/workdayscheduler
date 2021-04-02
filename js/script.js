@@ -1,9 +1,6 @@
 
 var myJumbo = $(".container")
-
-
-
-
+events = [];
 function createHourTile(counter)
 {
     currentTime = moment();
@@ -19,7 +16,6 @@ function createHourTile(counter)
     else if(slotTime.isSame(currentTime))
     {
         cardID = "present"
-
     }
 
     else 
@@ -27,47 +23,95 @@ function createHourTile(counter)
         cardID = "future";
     }
 
-
-    var timeSlotEl = $("<div>", {
+    var timeSlotEl = $("<div>", 
+    {
         class: "input-group",
         id: cardID
     });
     
-    var timeCardEl = $("<div>", {
+    var timeCardEl = $("<div>", 
+    {
         class: "badge badge-secondary",
         text: slotTime.format("h A"),
     });
     
-    var inputEl = $("<input>", {
+    var inputEl = $("<input>", 
+    {
         type: "text",
         class: "form-control",
         placeholder: "Enter event here",
-        id:cardID
+        id:cardID,
+        // borrowing an attribute to encode positional data during generation
+        name: counter,
     });
     
-    var saveButton = $("<button>", {
+    var saveButton = $("<button>", 
+    {
         class:"btn btn-primary",
-        text: "Submit",
         id:"sizing-addon2"
     });
+
+    var saveButtonGlyp = $("<i>", 
+    {
+        class: "fa fa-floppy-o"
+    })
     
-    timeSlotEl.appendTo(myJumbo);
     timeCardEl.appendTo(timeSlotEl);
     inputEl.appendTo(timeSlotEl);
+    saveButtonGlyp.appendTo(saveButton)
     saveButton.appendTo(timeSlotEl);
     return timeSlotEl;
     
 }
 
-
-
-for (var i = 0; i < 9; i++)
+function generateTimeSlots(numberOFSlots)
 {
-    var myHour = createHourTile(i);
-    myHour.appendTo(myJumbo);
+    for (var i = 0; i < numberOFSlots; i++)
+    {
+        var myHour = createHourTile(i);
+        eventText = myHour.children("input").value;
+        myHour.appendTo(myJumbo);
+    }
+    
+}
+
+function saveEvents()
+{   
+    localStorage.setItem("events", JSON.stringify(events));
+}
+
+function loadEvents()
+{   
+    var storedEvents = JSON.parse(localStorage.getItem("events"));
+    var displayEventEl = $("input");
+    if(storedEvents !=null)
+    {
+        events = storedEvents;
+
+    }
+    for(var i = 0; i < events.length;i++ )
+    {    
+        if(events[i] != null)
+        { 
+            displayEventEl.eq(i).val(events[i].event);
+        }
+    }
 
 }
 
+generateTimeSlots(9)
+loadEvents()
 
+$(".btn-primary").on("click", function() {
+    var textInput = $(this).parent().children("input").val();
+    var eventId = $(this).parent().children("input").attr("name");
 
-$(".btn-primary").on("click", ()=> {alert("don't click")})
+    if(textInput!= null)
+    {
+        events[eventId] = {event: textInput, id: eventId};
+
+    }
+    console.log({event: textInput, id: eventId});
+    saveEvents();
+    
+})

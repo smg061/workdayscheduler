@@ -1,3 +1,5 @@
+
+
 body {
   font-family: 'Open Sans', sans-serif;
   font-size: 16px;
@@ -57,7 +59,7 @@ textarea {
   color: white;
 }
 
-.saveBtn {
+.btn-primary {
   border-left: 1px solid black;
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
@@ -65,25 +67,32 @@ textarea {
   color: white;
 }
 
-.saveBtn i:hover {
+.btn-primary>i{
+  font-size: 1.5rem;
+}
+
+.btn-primary>i:hover {
   font-size: 20px;
   transition: all 0.3s ease-in-out;
 }
 
 
+
 .input-group, .btn-primary, .form-control, .badge-secondary {
 
   height: 5rem;
+  align-items:center;
   
 }
 
 .input-group {
-  margin: 0.5rem;
-  border-style: solid;
-  border-radius: 0.7rem;
-  height: 5.2rem;
+  margin: 0.05rem;
+  border-radius: 1rem;
+  height: 5rem;
 }
 
 .badge-secondary {
   width: 3rem;
+  text-align: center;
+  text-justify: distribute;
 }
