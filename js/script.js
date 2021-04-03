@@ -10,12 +10,10 @@ function createHourTile(initialHour, hourOffset)
 {
     currentTime = moment();
     slotTime = moment().hour(initialHour); // first hour is 9 AM
-    slotTime.add( (30* hourOffset), 'minutes'); // add to the hour
+    slotTime.add( (31* hourOffset), 'minutes'); // add to the hour
     // add conditional to add id to the card depending on the hour
     var cardID = "";
-
     // compare the slot's time to the current time and set the attribute accordingly
-
     if (slotTime.isBefore(currentTime))
     {
         cardID = "past";
