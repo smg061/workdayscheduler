@@ -1,6 +1,6 @@
 # Work Day Scheduler
 
-This app allows the user to schedule to-do items at common business hours to improve time management. The app can be accessed through this [link] (smg061.github.io/workdayscheduler)
+This app allows the user to schedule to-do items at common business hours to improve time management. The app can be accessed through this [link](smg061.github.io/workdayscheduler)
 
 # Features
 
