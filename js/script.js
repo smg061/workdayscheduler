@@ -9,7 +9,7 @@ events = [];
 function createHourTile(initialHour, hourOffset)
 {
     currentTime = moment();
-    slotTime = moment().hour(initialHour).format("h A"); // first hour is 9 AM
+    slotTime = moment().hour(initialHour); // first hour is 9 AM
     slotTime.add(hourOffset, 'hours'); // add to the hour
     // add conditional to add id to the card depending on the hour
     var cardID = "";
