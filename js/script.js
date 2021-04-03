@@ -42,7 +42,7 @@ function createHourTile(initialHour, hourOffset)
     var timeCardEl = $("<div>", 
     {
         class: "badge badge-secondary",
-        text: slotTime.format("h A"),
+        text: slotTime.format("hh A"),
     });
     
     // input element to write events
